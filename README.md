@@ -105,4 +105,6 @@ I wish I had more time to implement more stuff, like designing a logo for the we
 
 I really enjoyed making this project. This was my first dissertation idea, but i decided to do something else. I really hope one day i will be able to alunch a project like this for the students in Iasi and for them to use it.
 
+This was supposed to be a mobile first design.
+
 Thank you for reading this, i did some yapping but i wanted to show you the genuine stuff i have done.
