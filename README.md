@@ -60,21 +60,6 @@ The AI initially suggested fixing the RLS policies directly, but the generated S
 
 A similar issue happened with database columns (`obs`, `alergeni`) — the AI generated insert queries referencing columns that didn't exist yet in my Supabase schema, causing runtime errors. The fix was to only include those fields in the payload when they have values, using spread syntax (`...alergeni ? { alergeni } : {}`), which the AI suggested after I pasted the exact error message.
 
-## Getting Started
-
-```bash
-# Install dependencies
-npm install
-
-# Start dev server (accessible on local network for phone testing)
-npx vite --host
-
-# Type-check
-npx tsc --noEmit
-
-# Build for production
-npm run build
-```
 
 PS: 
 
