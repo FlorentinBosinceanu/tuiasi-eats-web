@@ -2,8 +2,6 @@
 
 A mobile-first food delivery web application built for the TUIASI university canteen. Students can browse the menu, place orders, and track them in real time, while canteen staff manage incoming orders and the menu from an admin dashboard.
 
-## What the App Does
-
 **TUIASI Eats** digitizes the canteen ordering experience with two distinct interfaces:
 
 ### 🎓 Student Side
@@ -38,58 +36,13 @@ A mobile-first food delivery web application built for the TUIASI university can
 | Icons | Lucide React |
 | Notifications | react-hot-toast, Web Audio API, Browser Notification API |
 
-## LLMs / Tools Used
-
-This project was built almost entirely with **LLM-assisted development** using:
-
-- **GitHub Copilot (Claude Sonnet 4 / Claude Opus 4.6)** inside VS Code — used for the full development lifecycle: scaffolding the project structure, implementing every page and component, writing Supabase queries, debugging CSS/layout issues, and iterating on features through conversational prompts.
-
-The workflow was conversational and iterative: I described what I wanted at a high level (e.g. _"add real-time order tracking with sound notifications"_), reviewed the generated code on my phone, and then prompted follow-up fixes or refinements (e.g. _"the dark background makes the text unreadable"_ or _"the image is getting cut off"_).
-
--**Google Gemini 3.5 Pro for starting instructions
-
-## A Specific Hallucination / Technical Hurdle
-
-**Problem: Supabase Storage Row-Level Security (RLS) blocking image uploads**
-
-When implementing image uploads for menu items in the admin panel, the AI generated a straightforward `supabase.storage.from('menu-images').upload(...)` call. The upload silently failed with:
-
-> `StorageApiError: new row violates row-level security policy`
-
-The AI initially suggested fixing the RLS policies directly, but the generated SQL policies didn't match my Supabase setup and would have left the bucket insecure. After going back and forth, the practical solution we arrived at was to **make the image upload non-blocking** — the menu item gets created/updated in the database regardless, and if the image upload fails, the user sees a warning toast instead of losing all their form data. This was a case where the AI's first instinct (fix the policy) was technically correct but impractical in context, and prompting it with _"just make it so the item still gets added even if the image fails"_ led to a much better UX outcome.
-
-A similar issue happened with database columns (`obs`, `alergeni`) — the AI generated insert queries referencing columns that didn't exist yet in my Supabase schema, causing runtime errors. The fix was to only include those fields in the payload when they have values, using spread syntax (`...alergeni ? { alergeni } : {}`), which the AI suggested after I pasted the exact error message.
-
-
-PS: 
-
-Bear in mind that the project was made in 3 days because of the notification timing about the job post and the project, and for personal reasons that i can discuss in future reviews. I probably spent around 15 hours for it. At first i started with some drafts, and I will add the photos inside the folder for you to see all my tought process in making this happen. 
-
-the photos are user-side-sketch, admin-side-sketch and hard draft didital sketch
-
-I did some rough sketches on how it should be. then i forgot that AI can't tell how i want the app to look like so i made some digital sketches in paint , lol, then I started with google gemini, , then thought why would i not use the visual studio code copilot, so i did most of the coding on the copilot. I made a Supabase database for the items, profiles.
-
-Now i know that the app does not look appealing in some pages, i was in quite a rush when making this and i wehnt through different design processes when amking that, but the ai kept screwing up, so i just left it like that, the utesils part, the button is there on the right, if you press there you will see the text chaning.
-
-To view the user side and admin side I made 2 different entities
-
-USER SIDE
+## User Login
 
 test@student.tuiasi.ro
 password123
 
 
-ADMIN SIDE
+## Admin Login
 
 admin@staff.tuiasi.ro
 password123
-
-I hope this project will run on your end, whoever reviews it
-
-I wish I had more time to implement more stuff, like designing a logo for the website, implement the courier technology like in the sketches, make more photos for the produts and bla bla bla
-
-I really enjoyed making this project. This was my first dissertation idea, but i decided to do something else. I really hope one day i will be able to alunch a project like this for the students in Iasi and for them to use it.
-
-This was supposed to be a mobile first design.
-
-Thank you for reading this, i did some yapping but i wanted to show you the genuine stuff i have done.
